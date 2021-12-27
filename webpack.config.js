@@ -3,6 +3,8 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = (env, argv) => {
   if (env.debug) {
@@ -30,6 +32,7 @@ module.exports = (env, argv) => {
         inject: false,
       }),
     ],
+    optimization: {},
   };
   if (!isDev) {
     config.plugins.push(
@@ -37,6 +40,41 @@ module.exports = (env, argv) => {
         filename: `[name].${pkg.version}.[contenthash].css`,
       }),
     );
+    config.optimization = {
+      minimize: true,
+      minimizer: [
+        new CssMinimizerPlugin({
+          minimizerOptions: {
+            preset: [
+              "default",
+              {
+                discardComments: { removeAll: true },
+              },
+            ],
+          },
+        }),
+        new TerserPlugin(),
+      ],
+      splitChunks: {
+        cacheGroups: {
+          runtimeChunk: {
+            name: "runtime",
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            chunks: "all",
+          },
+          styles: {
+            name: "styles",
+            type: "css/mini-extract",
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      },
+      removeEmptyChunks: true,
+    };
   }
   return merge(
     require(path.resolve(__dirname, ".webpack/vue")),
