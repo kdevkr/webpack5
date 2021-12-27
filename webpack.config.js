@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const WebpackBuildNotifierPlugin = require("webpack-build-notifier");
 
 module.exports = (env, argv) => {
   if (env.debug) {
@@ -31,6 +32,9 @@ module.exports = (env, argv) => {
         template: "src/templates/index.ejs",
         filename: "index.html",
         inject: false,
+      }),
+      new WebpackBuildNotifierPlugin({
+        suppressSuccess: true,
       }),
     ],
     optimization: {},
