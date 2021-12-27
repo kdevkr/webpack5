@@ -38,6 +38,7 @@ module.exports = (env, argv) => {
   return merge(
     require(path.resolve(__dirname, ".webpack/vue")),
     require(path.resolve(__dirname, ".webpack/sass")),
+    require(path.resolve(__dirname, ".webpack/eslint")),
     config
   );
 };
