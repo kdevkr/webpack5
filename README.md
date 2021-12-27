@@ -8,7 +8,7 @@ npm i -D webpack@5 webpack-cli@4 webpack-dev-server@4
 Build for development.
 
 ```sh
-npx webpack --mode development
+npx webpack --node-env development
 asset main.js 1.21 KiB [compared for emit] (name: main)
 ./src/index.js 29 bytes [built] [code generated]
 webpack 5.65.0 compiled successfully in 86 ms
@@ -18,7 +18,7 @@ webpack 5.65.0 compiled successfully in 86 ms
 Build for production.
 
 ```sh
-npx webpack --mode production
+npx webpack --node-env production
 asset main.js 1.21 KiB [compared for emit] (name: main)
 ./src/index.js 29 bytes [built] [code generated]
 webpack 5.65.0 compiled successfully in 86 ms
