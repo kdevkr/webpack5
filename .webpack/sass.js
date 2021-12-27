@@ -6,6 +6,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: [
+          isDev ? "vue-style-loader" : MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           // style-loader > css-loader > postcss-loader > sass-loader

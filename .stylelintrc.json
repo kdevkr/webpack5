@@ -1,0 +1,9 @@
+{
+  "extends": "stylelint-config-recommended-scss",
+  "customSyntax": "postcss-scss",
+  "rules": {
+  },
+  "ignoreFiles": [
+        "node_modules/**/*.css"
+    ]
+}

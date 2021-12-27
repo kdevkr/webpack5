@@ -5,5 +5,6 @@ module.exports = {
     "postcss-import": {},
     autoprefixer: {},
     cssnano: {},
+    stylelint: {},
   },
 };
