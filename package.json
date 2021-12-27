@@ -2,6 +2,11 @@
   "name": "webpack5",
   "version": "1.0.0",
   "description": "",
+  "scripts": {
+    "serve": "webpack serve",
+    "build": "webpack build --node-env production --env manifest",
+    "build:dev": "webpack build --node-env development"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kdevkr/webpack5.git"
