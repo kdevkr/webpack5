@@ -1,3 +1,4 @@
+const pkg = require("./package.json");
 const path = require("path");
 const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -8,10 +9,12 @@ module.exports = (env, argv) => {
     console.log("env:", env);
     console.log("argv:", argv);
   }
-  const isDev = process.env.NODE_ENV !== "production";
+  const isDev =
+    process.env.WEBPACK_SERVE || process.env.NODE_ENV !== "production";
   const config = {
+    mode: isDev ? "development" : "production",
     output: {
-      filename: isDev ? "[name].js" : "[name].[contenthash].js",
+      filename: isDev ? "[name].js" : `[name].${pkg.version}.[contenthash].js`,
       clean: true,
     },
     resolve: {
@@ -31,7 +34,7 @@ module.exports = (env, argv) => {
   if (!isDev) {
     config.plugins.push(
       new MiniCssExtractPlugin({
-        filename: "[name].[contenthash].css",
+        filename: `[name].${pkg.version}.[contenthash].css`,
       }),
     );
   }
