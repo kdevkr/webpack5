@@ -1,5 +1,8 @@
 const path = require("path");
 const { merge } = require("webpack-merge");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = (env, argv) => {
   if (env.debug) {
     console.log("env:", env);
@@ -17,6 +20,24 @@ module.exports = (env, argv) => {
         "@": path.resolve(__dirname, "src"),
       },
     },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "src/templates/index.ejs",
+        filename: "index.html",
+        inject: false,
+      }),
+    ],
   };
-  return merge(require(path.resolve(__dirname, ".webpack/vue")), config);
+  if (!isDev) {
+    config.plugins.push(
+      new MiniCssExtractPlugin({
+        filename: "[name].[contenthash].css",
+      })
+    );
+  }
+  return merge(
+    require(path.resolve(__dirname, ".webpack/vue")),
+    require(path.resolve(__dirname, ".webpack/sass")),
+    config
+  );
 };

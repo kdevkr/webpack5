@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-module.exports = {
+export default {
     data() {
         return {
             message: "Hello World"
@@ -12,3 +12,8 @@ module.exports = {
     }
 }
 </script>
+<style lang="scss">
+html {
+    color: $black;
+}
+</style>
