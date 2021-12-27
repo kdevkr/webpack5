@@ -1,6 +1,8 @@
 <template>
     <div>
-        <h1>{{message}}</h1>
+        <b-container>
+            <h1>{{message}}</h1>
+        </b-container>
     </div>
 </template>
 <script>
@@ -14,6 +16,27 @@ export default {
 </script>
 <style lang="scss">
 html {
-    color: $black;
+  color: $black;
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 import "normalize.css";
 import "@/scss/main.scss";
+import "@/js/common.js";
 import Vue from "vue";
 import App from "@/App";
 

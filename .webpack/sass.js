@@ -39,6 +39,9 @@ module.exports = {
               additionalData: `
                   @import "@/scss/variables.scss";
               `,
+              sassOptions: {
+                quietDeps: ["node_modules/bootstrap/**/*.scss"],
+              },
             },
           },
         ],
