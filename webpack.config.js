@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
     config.plugins.push(
       new MiniCssExtractPlugin({
         filename: "[name].[contenthash].css",
-      })
+      }),
     );
   }
   return merge(
@@ -40,6 +40,7 @@ module.exports = (env, argv) => {
     require(path.resolve(__dirname, ".webpack/sass")),
     require(path.resolve(__dirname, ".webpack/eslint")),
     require(path.resolve(__dirname, ".webpack/babel")),
-    config
+    require(path.resolve(__dirname, ".webpack/asset")),
+    config,
   );
 };
