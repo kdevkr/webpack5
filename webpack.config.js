@@ -39,6 +39,7 @@ module.exports = (env, argv) => {
     require(path.resolve(__dirname, ".webpack/vue")),
     require(path.resolve(__dirname, ".webpack/sass")),
     require(path.resolve(__dirname, ".webpack/eslint")),
+    require(path.resolve(__dirname, ".webpack/babel")),
     config
   );
 };
