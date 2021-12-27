@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 
 module.exports = (env, argv) => {
   if (env.debug) {
@@ -76,6 +77,16 @@ module.exports = (env, argv) => {
       removeEmptyChunks: true,
     };
   }
+
+  if (env.manifest) {
+    config.plugins.push(
+      new WebpackManifestPlugin({
+        publicPath: "/dist/",
+        fileName: "manifest.json",
+      }),
+    );
+  }
+
   return merge(
     require(path.resolve(__dirname, ".webpack/vue")),
     require(path.resolve(__dirname, ".webpack/sass")),
